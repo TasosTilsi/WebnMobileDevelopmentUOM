@@ -46,6 +46,12 @@ main{
     margin-top: 2em;
     padding-top: 3em;
     position: relative;
+    animation-name: animateTable;
+    animation-duration: 3s;  
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    visibility: hidden;
 }
 
 .table-head{
@@ -165,4 +171,13 @@ tbody > tr:hover {
         font-size: smaller;        
     }
 
+  }
+
+  @keyframes animateTable {
+    from {top: -400px;
+        visibility: visible;
+    }
+    to {top: 0px;
+        visibility: visible;
+    }
   }
