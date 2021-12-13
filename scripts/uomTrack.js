@@ -1,6 +1,6 @@
 'use strict';
 
-import { calendar, dropdown, input, newRow } from './dynamicHtmlElements.js';
+import { calendar, dropdown, input, inputNumber, newRow } from './dynamicHtmlElements.js';
 // console.log(calendar());
 
 let uomTrackTable = document.getElementsByTagName('table')[0];
@@ -22,6 +22,7 @@ const checkForClassAddedOrRemoved = () => {
     changeColumnIntoCalendar();
     deleteEventListener();
     saveEventListener();
+    editEventListener();
 }
 
 const displayEditColumn = () => {
@@ -30,7 +31,7 @@ const displayEditColumn = () => {
     if (hasOurTableClassUomTrack(uomTrackTable)) {
 
         for (let i = 0; i < columnsList.length; i++) {
-            columnsList[i].style.display = 'table-cell';
+            columnsList[i].style.display = 'flex';
         }
 
         myFloat.style.display = 'flex';
@@ -49,7 +50,9 @@ const changeColumn1IntoDropdown = () => {
 
     let column1List = document.getElementsByClassName('column1');
     for (let i = 1; i < column1List.length; i++) {
+        let countryFlag = column1List[i].innerText;
         column1List[i].innerHTML = dropdown();
+        column1List[i].firstElementChild.value = countryFlag;
     }
 }
 
@@ -59,17 +62,30 @@ const changeColumnsIntoInputs = () => {
     let column3List = document.getElementsByClassName('column3');
     let column4List = document.getElementsByClassName('column4');
     for (let i = 1; i < column2List.length; i++) {
+
+        let surname = column2List[i].innerText;
+        let firstname = column3List[i].innerText;
+        let perbest = column4List[i].innerText;
+
         column2List[i].innerHTML = input();
         column3List[i].innerHTML = input();
-        column4List[i].innerHTML = input();
+        column4List[i].innerHTML = inputNumber();
+
+        column2List[i].firstElementChild.value = surname;
+        column3List[i].firstElementChild.value = firstname;
+        column4List[i].firstElementChild.value = perbest;
     }
+
+
 }
 
 const changeColumnIntoCalendar = () => {
 
     let column5List = document.getElementsByClassName('column5');
     for (let i = 1; i < column5List.length; i++) {
+        let date = column5List[i].innerText;
         column5List[i].innerHTML = calendar();
+        column5List[i].firstElementChild.value = date;
     }
 }
 
@@ -78,7 +94,7 @@ const addNewRow = () => {
     let tableBody = document.querySelector('tbody');
     tableBody.insertAdjacentHTML('beforeend', newRow());
 
-    let latestAddedRow = document.querySelectorAll('tr i.bi-trash')[document.querySelectorAll('tr i.bi-trash').length-1];
+    let latestAddedRow = document.querySelectorAll('tr i.bi-trash')[document.querySelectorAll('tr i.bi-trash').length - 1];
     latestAddedRow.addEventListener('click', (element) => {
         element = element || window.event;
         let target = element.target;
@@ -86,12 +102,20 @@ const addNewRow = () => {
         deleteRow(target);
     });
 
-    latestAddedRow = document.querySelectorAll('tr i.bi-check-lg')[document.querySelectorAll('tr i.bi-trash').length-1];
+    latestAddedRow = document.querySelectorAll('tr i.bi-check-lg')[document.querySelectorAll('tr i.bi-trash').length - 1];
     latestAddedRow.addEventListener('click', (element) => {
         element = element || window.event;
         let target = element.target;
         console.log(target.parentNode.parentNode);
         saveEditedRow(target);
+    });
+
+    latestAddedRow = document.querySelectorAll('tr i.bi-pencil')[document.querySelectorAll('tr i.bi-trash').length - 1];
+    latestAddedRow.addEventListener('click', (element) => {
+        element = element || window.event;
+        let target = element.target;
+        console.log(target.parentNode.parentNode);
+        editRow(target);
     });
 }
 
@@ -114,14 +138,55 @@ const saveEditedRow = (element) => {
     let firstname = targetRow.querySelector('.column3').firstElementChild.value;
     let perBest = targetRow.querySelector('.column4').firstElementChild.value;
     let date = targetRow.querySelector('.column5').firstElementChild.value;
-    console.log(`${countryFlag} ${surname} ${firstname} ${perBest} ${date}`);
-    targetRow.querySelector('.column1').innerHTML = countryFlag;
-    targetRow.querySelector('.column2').innerHTML = surname;
-    targetRow.querySelector('.column3').innerHTML = firstname;
-    targetRow.querySelector('.column4').innerHTML = perBest;
-    targetRow.querySelector('.column5').innerHTML = date;
+
+    if (countryFlag == '' || surname == '' || firstname == '' || perBest == '' || date == '') {
+        alert(`Please Fill All the columns from the row you Clicked to save!!\n
+        country = ${countryFlag} | surname = ${surname} | firstname = ${firstname} | perBest = ${perBest} | date = ${date}`);
+    } else {
+        console.log(`${countryFlag} ${surname} ${firstname} ${perBest} ${date}`);
+
+        targetRow.querySelector('.column1').innerHTML = countryFlag;
+        targetRow.querySelector('.column2').innerHTML = surname;
+        targetRow.querySelector('.column3').innerHTML = firstname;
+        targetRow.querySelector('.column4').innerHTML = perBest;
+        targetRow.querySelector('.column5').innerHTML = date;
+        targetRow.querySelector('.bi-check-lg').style.display = 'none';
+        targetRow.querySelector('.bi-pencil').style.display = 'unset';
+    }
+
+
 
 }
+
+const editRow = (element) => {
+
+    let row = element.parentNode.parentNode.rowIndex;
+    let targetRow = element.parentNode.parentNode;
+    console.log(row - 1);
+
+    let countryFlag = targetRow.querySelector('.column1').innerText;
+    let surname = targetRow.querySelector('.column2').innerText;
+    let firstname = targetRow.querySelector('.column3').innerText;
+    let perBest = targetRow.querySelector('.column4').innerText;
+    let stringDate = targetRow.querySelector('.column5').innerText;
+
+    console.log(`${countryFlag} ${surname} ${firstname} ${perBest} ${stringDate}`);
+
+    targetRow.querySelector('.column1').innerHTML = dropdown();
+    targetRow.querySelector('.column1').firstElementChild.value = countryFlag;
+    targetRow.querySelector('.column2').innerHTML = input();
+    targetRow.querySelector('.column2').firstElementChild.value = surname;
+    targetRow.querySelector('.column3').innerHTML = input();
+    targetRow.querySelector('.column3').firstElementChild.value = firstname;
+    targetRow.querySelector('.column4').innerHTML = inputNumber();
+    targetRow.querySelector('.column4').firstElementChild.value = perBest;
+    targetRow.querySelector('.column5').innerHTML = calendar();
+    targetRow.querySelector('.column5').firstElementChild.value = stringDate;
+    targetRow.querySelector('.bi-check-lg').style.display = 'unset';
+    targetRow.querySelector('.bi-pencil').style.display = 'none';
+}
+
+//----------------------------------listeners-----------------------------------------------------//
 
 document.body.addEventListener('animationend', () => {
     checkForClassAddedOrRemoved();
@@ -157,8 +222,18 @@ const saveEventListener = () => {
     });
 }
 
+const editEventListener = () => {
+    document.querySelectorAll('tr i.bi-pencil').forEach(element => {
 
+        element.addEventListener('click', (element) => {
+            element = element || window.event;
+            let target = element.target;
+            console.log(target.parentNode.parentNode);
+            editRow(target);
+        });
 
+    });
+}
 
 
 // window.onclick = e => {

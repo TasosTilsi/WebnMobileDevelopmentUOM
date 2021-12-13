@@ -22,12 +22,12 @@
     <main id="mainSection">
         <div class="wrap-table">
             <div class="item table-responsive container">
-                <table class="table container table-striped uomTrack">
+                <table class="table container uomTrack">
                     <thead>
                         <tr class="table-head row">
-                            <th class="column1 col col-1">Country Flag</th>
-                            <th class="column2 col">Surname</th>
-                            <th class="column3 col">Firstname</th>
+                            <th class="column1 col col-1">Country</th>
+                            <th class="column2 col col-2">Surname</th>
+                            <th class="column3 col col-2">Firstname</th>
                             <th class="column4 col col-1">Pers. Best</th>
                             <th class="column5 col col-2">Date</th>
                             <th class="column6 col col-1">Edit</th>
@@ -35,68 +35,84 @@
                     </thead>
                     <tbody>
                         <tr class="row">
-                            <td class="column1 col col-1"> JAM </td>
-                            <td class="column2 col">BOLT</td>
-                            <td class="column3 col">Usain</td>
-                            <td class="column4 col col-1">9.58</td>
-                            <td class="column5 col col-2">2009-08-16</td>
-                            <td class="column6 col col-1"><i class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
+                            <td data-th="Country" class="column1 col col-1"> JAM </td>
+                            <td data-th="Surname" class="column2 col col-2">BOLT</td>
+                            <td data-th="Firstname" class="column3 col col-2">Usain</td>
+                            <td data-th="Pers. Best" class="column4 col col-1">9.58</td>
+                            <td data-th="Date" class="column5 col col-2">2009-08-16</td>
+                            <td data-th="Edit" class="column6 col col-1"><i class="bi bi-pencil"></i><i
+                                    class="bi bi-check-lg"></i> <i class="bi bi-trash"></i>
+                            </td>
                         </tr>
                         <tr class="row">
-                            <td class="column1 col col-1"> USA </td>
-                            <td class="column2 col">GAY</td>
-                            <td class="column3 col">Tyson</td>
-                            <td class="column4 col col-1">9.69</td>
-                            <td class="column5 col col-2">2009-09-20</td>
-                            <td class="column6 col col-1"><i class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
+                            <td data-th="Country" class="column1 col col-1"> USA </td>
+                            <td data-th="Surname" class="column2 col col-2">GAY</td>
+                            <td data-th="Firstname" class="column3 col col-2">Tyson</td>
+                            <td data-th="Pers. Best" class="column4 col col-1">9.69</td>
+                            <td data-th="Date" class="column5 col col-2">2009-09-20</td>
+                            <td data-th="Edit" class="column6 col col-1"><i class="bi bi-pencil"></i><i
+                                    class="bi bi-check-lg"></i> <i class="bi bi-trash"></i>
+                            </td>
                         </tr>
                         <tr class="row">
-                            <td class="column1 col col-1"> KEN </td>
-                            <td class="column2 col">OMANYALA</td>
-                            <td class="column3 col">Ferdinand</td>
-                            <td class="column4 col col-1">9.77</td>
-                            <td class="column5 col col-2">2021-09-18</td>
-                            <td class="column6 col col-1"><i class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
+                            <td data-th="Country" class="column1 col col-1"> KEN </td>
+                            <td data-th="Surname" class="column2 col col-2">OMANYALA</td>
+                            <td data-th="Firstname" class="column3 col col-2">Ferdinand</td>
+                            <td data-th="Pers. Best" class=" column4 col col-1">9.77</td>
+                            <td data-th="Date" class="column5 col col-2">2021-09-18</td>
+                            <td data-th="Edit" class="column6 col col-1"><i class="bi bi-pencil"></i><i
+                                    class="bi bi-check-lg"></i> <i class="bi bi-trash"></i>
+                            </td>
                         </tr>
                         <tr class="row">
-                            <td class="column1 col col-1"> ITA </td>
-                            <td class="column2 col">JACOBS</td>
-                            <td class="column3 col">Lamont Marcell</td>
-                            <td class="column4 col col-1">9.80</td>
-                            <td class="column5 col col-2">2021-08-01</td>
-                            <td class="column6 col col-1"><i class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
+                            <td data-th="Country" class="column1 col col-1"> ITA </td>
+                            <td data-th="Surname" class="column2 col col-2">JACOBS</td>
+                            <td data-th="Firstname" class="column3 col col-2">Lamont Marcell</td>
+                            <td data-th="Pers. Best" class="column4 col col-1">9.80</td>
+                            <td data-th="Date" class="column5 col col-2">2021-08-01</td>
+                            <td data-th="Edit" class="column6 col col-1"><i class="bi bi-pencil"></i><i
+                                    class="bi bi-check-lg"></i> <i class="bi bi-trash"></i>
+                            </td>
                         </tr>
                         <tr class="row">
-                            <td class="column1 col col-1"> TTO </td>
-                            <td class="column2 col">THOMPSON</td>
-                            <td class="column3 col">Richard</td>
-                            <td class="column4 col col-1">9.82</td>
-                            <td class="column5 col col-2">2014-06-21</td>
-                            <td class="column6 col col-1"><i class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
+                            <td data-th="Country" class="column1 col col-1"> TTO </td>
+                            <td data-th="Surname" class="column2 col col-2">THOMPSON</td>
+                            <td data-th="Firstname" class="column3 col col-2">Richard</td>
+                            <td data-th="Pers. Best" class="column4 col col-1">9.82</td>
+                            <td data-th="Date" class="column5 col col-2">2014-06-21</td>
+                            <td data-th="Edit" class="column6 col col-1"><i class="bi bi-pencil"></i><i
+                                    class="bi bi-check-lg"></i> <i class="bi bi-trash"></i>
+                            </td>
                         </tr>
                         <tr class="row">
-                            <td class="column1 col col-1"> CHN </td>
-                            <td class="column2 col">SU</td>
-                            <td class="column3 col">Bingtian</td>
-                            <td class="column4 col col-1">9.83</td>
-                            <td class="column5 col col-2">2021-08-01</td>
-                            <td class="column6 col col-1"><i class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
+                            <td data-th="Country" class="column1 col col-1"> CHN </td>
+                            <td data-th="Surname" class="column2 col col-2">SU</td>
+                            <td data-th="Firstname" class="column3 col col-2">Bingtian</td>
+                            <td data-th="Pers. Best" class="column4 col col-1">9.83</td>
+                            <td data-th="Date" class="column5 col col-2">2021-08-01</td>
+                            <td data-th="Edit" class="column6 col col-1"><i class="bi bi-pencil"></i><i
+                                    class="bi bi-check-lg"></i> <i class="bi bi-trash"></i>
+                            </td>
                         </tr>
                         <tr class="row">
-                            <td class="column1 col col-1"> CAN </td>
-                            <td class="column2 col">BAILEY</td>
-                            <td class="column3 col">Donovan</td>
-                            <td class="column4 col col-1">9.84</td>
-                            <td class="column5 col col-2">1996-07-27</td>
-                            <td class="column6 col col-1"><i class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
+                            <td data-th="Country" class="column1 col col-1"> CAN </td>
+                            <td data-th="Surname" class="column2 col col-2">BAILEY</td>
+                            <td data-th="Firstname" class="column3 col col-2">Donovan</td>
+                            <td data-th="Pers. Best" class="column4 col col-1">9.84</td>
+                            <td data-th="Date" class="column5 col col-2">1996-07-27</td>
+                            <td data-th="Edit" class="column6 col col-1"><i class="bi bi-pencil"></i><i
+                                    class="bi bi-check-lg"></i> <i class="bi bi-trash"></i>
+                            </td>
                         </tr>
                         <tr class="row">
-                            <td class="column1 col col-1"> RSA </td>
-                            <td class="column2 col">SIMBINE</td>
-                            <td class="column3 col">Akani</td>
-                            <td class="column4 col col-1">9.84</td>
-                            <td class="column5 col col-2">2021-07-07</td>
-                            <td class="column6 col col-1"><i class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
+                            <td data-th="Country" class="column1 col col-1"> RSA </td>
+                            <td data-th="Surname" class="column2 col col-2">SIMBINE</td>
+                            <td data-th="Firstname" class="column3 col col-2">Akani</td>
+                            <td data-th="Pers. Best" class="column4 col col-1">9.84</td>
+                            <td data-th="Date" class="column5 col col-2">2021-07-07</td>
+                            <td data-th="Edit" class="column6 col col-1"><i class="bi bi-pencil"></i><i
+                                    class="bi bi-check-lg"></i> <i class="bi bi-trash"></i>
+                            </td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -113,6 +129,16 @@
     <a class="afloat flex" id="myFloat">
         <i class="fa fa-plus"></i>
     </a>
+
+    <div class="toast align-items-center text-white bg-primary border-0" id="myToast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="d-flex">
+          <div class="toast-body">
+            Hello, world! This is a toast message.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

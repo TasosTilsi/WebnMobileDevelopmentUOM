@@ -1,8 +1,10 @@
 'use strict';
 
-const calendarObj = `<input class="form-control " type="date" placeholder="Input Text" aria-label="input">`;
+const calendarObj = `<input class="form-control" type="date" placeholder="Input Text" aria-label="input">`;
 
 const inputObj = `<input class="form-control" type="text" placeholder="Input Text" aria-label="input">`;
+
+const inputNumberObj = `<input class="form-control" type="number" placeholder="Input Text" aria-label="input">`;
 
 const dropdownObj = `
     <input class="form-control" list="countriesOptions" id="countriesDataList" placeholder="Type to search...">
@@ -201,14 +203,15 @@ const dropdownObj = `
 </datalist>`;
 
 const newRowObj = `<tr class="row">
-    <td class="column1 col col-1">
+    <td data-th="Country" class="column1 col col-1">
 ${dropdownObj}
 </td>
-    <td class="column2 col">${inputObj}</td>
-    <td class="column3 col">${inputObj}</td>
-    <td class="column4 col col-1">${inputObj}</td>
-    <td class="column5 col col-2">${calendarObj}</td>
-    <td class="column6 col col-1" style="display: table-cell;"><i class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
+    <td data-th="Surname" class="column2 col col-2">${inputObj}</td>
+    <td data-th="Firstname" class="column3 col col-2">${inputObj}</td>
+    <td data-th="Pers. Best" class="column4 col col-1">${inputNumberObj}</td>
+    <td data-th="Date" class="column5 col col-2">${calendarObj}</td>
+    <td data-th="Edit" class="column6 col col-1" style = "display:flex;"><i class="bi bi-pencil"></i><i
+    class="bi bi-check-lg"></i> <i class="bi bi-trash"></i></td>
 </tr>`;
 
 // let elementsObj = {
@@ -230,6 +233,9 @@ export function calendar(){
 }
 export function input(){
     return inputObj;
+}
+export function inputNumber(){
+    return inputNumberObj;
 }
 export function dropdown(){
     return dropdownObj;
