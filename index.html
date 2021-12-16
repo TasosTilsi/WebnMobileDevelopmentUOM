@@ -22,15 +22,15 @@
     <main id="mainSection">
         <div class="wrap-table">
             <div class="item table-responsive container">
-                <table class="table container uomTrack">
+                <table class="table container uomTrack js-sort-table">
                     <thead>
                         <tr class="table-head row">
-                            <th class="column1 col col-1">Country</th>
-                            <th class="column2 col col-2">Surname</th>
-                            <th class="column3 col col-2">Firstname</th>
-                            <th class="column4 col col-1">Pers. Best</th>
-                            <th class="column5 col col-2">Date</th>
-                            <th class="column6 col col-1">Edit</th>
+                            <th class="column1 col col-1 js-sort-input">Country</th>
+                            <th class="column2 col col-2 js-sort-input">Surname</th>
+                            <th class="column3 col col-2 js-sort-input">Firstname</th>
+                            <th class="column4 col col-1 js-sort-input js-sort-number">Pers. Best</th>
+                            <th class="column5 col col-2 js-sort-input js-sort-date">Date</th>
+                            <th class="column6 col col-1 js-sort-none">Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,9 +117,9 @@
                     </tbody>
                     <tfoot>
                         <tr class="row">
-                            <th class="col">Best Time:</th>
-                            <th class="col">Worst Time:</th>
-                            <th class="col">Average Time:</th>
+                            <th class="col">Best Time: <span id="bestTime"></span></th>
+                            <th class="col">Worst Time: <span id="worstTime"></span></th>
+                            <th class="col">Average Time: <span id="averageTime"></span></th>
                         </tr>
                     </tfoot>
                 </table>
@@ -143,6 +143,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script type="module" src="./scripts/uomTrack.js"></script>
+    <script type="module" src="./scripts/sort-table.js"></script>
 </body>
 
 </html>

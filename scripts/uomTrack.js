@@ -20,9 +20,12 @@ const checkForClassAddedOrRemoved = () => {
     changeColumn1IntoDropdown();
     changeColumnsIntoInputs();
     changeColumnIntoCalendar();
-    deleteEventListener();
-    saveEventListener();
-    editEventListener();
+    // deleteEventListener();
+    // saveEventListener();
+    // editEventListener();
+    findWorstTime();
+    findBestTime();
+    findAverageTime();
 }
 
 const displayEditColumn = () => {
@@ -94,29 +97,29 @@ const addNewRow = () => {
     let tableBody = document.querySelector('tbody');
     tableBody.insertAdjacentHTML('beforeend', newRow());
 
-    let latestAddedRow = document.querySelectorAll('tr i.bi-trash')[document.querySelectorAll('tr i.bi-trash').length - 1];
-    latestAddedRow.addEventListener('click', (element) => {
-        element = element || window.event;
-        let target = element.target;
-        console.log(target.parentNode.parentNode);
-        deleteRow(target);
-    });
+    // let latestAddedRow = document.querySelectorAll('tr i.bi-trash')[document.querySelectorAll('tr i.bi-trash').length - 1];
+    // latestAddedRow.addEventListener('click', (element) => {
+    //     element = element || window.event;
+    //     let target = element.target;
+    //     console.log(target.parentNode.parentNode);
+    //     deleteRow(target);
+    // });
 
-    latestAddedRow = document.querySelectorAll('tr i.bi-check-lg')[document.querySelectorAll('tr i.bi-trash').length - 1];
-    latestAddedRow.addEventListener('click', (element) => {
-        element = element || window.event;
-        let target = element.target;
-        console.log(target.parentNode.parentNode);
-        saveEditedRow(target);
-    });
+    // latestAddedRow = document.querySelectorAll('tr i.bi-check-lg')[document.querySelectorAll('tr i.bi-trash').length - 1];
+    // latestAddedRow.addEventListener('click', (element) => {
+    //     element = element || window.event;
+    //     let target = element.target;
+    //     console.log(target.parentNode.parentNode);
+    //     saveEditedRow(target);
+    // });
 
-    latestAddedRow = document.querySelectorAll('tr i.bi-pencil')[document.querySelectorAll('tr i.bi-trash').length - 1];
-    latestAddedRow.addEventListener('click', (element) => {
-        element = element || window.event;
-        let target = element.target;
-        console.log(target.parentNode.parentNode);
-        editRow(target);
-    });
+    // latestAddedRow = document.querySelectorAll('tr i.bi-pencil')[document.querySelectorAll('tr i.bi-trash').length - 1];
+    // latestAddedRow.addEventListener('click', (element) => {
+    //     element = element || window.event;
+    //     let target = element.target;
+    //     console.log(target.parentNode.parentNode);
+    //     editRow(target);
+    // });
 }
 
 const deleteRow = (element) => {
@@ -154,6 +157,18 @@ const saveEditedRow = (element) => {
         targetRow.querySelector('.bi-pencil').style.display = 'unset';
     }
 
+    /* // Check browser support
+    if (typeof (Storage) !== 'undefined') {
+        // Store
+        localStorage.setItem('countryFlag', countryFlag);
+        localStorage.setItem('surname', surname);
+        localStorage.setItem('firstname', firstname);
+        localStorage.setItem('perBest', perBest);
+        localStorage.setItem('date', date);
+    } else {
+        console.log('Sorry, your browser does not support Web Storage...');
+    } */
+
 
 
 }
@@ -186,6 +201,56 @@ const editRow = (element) => {
     targetRow.querySelector('.bi-pencil').style.display = 'none';
 }
 
+const findWorstTime = ()=>{
+    let timeColumns = document.querySelectorAll('.column4');
+    let max = -1;
+    for(let i=1;i<timeColumns.length;i++){
+        let time;
+        if (timeColumns[i].childElementCount>0){
+            time = parseFloat(timeColumns[i].firstElementChild.value);
+        }else{
+            time = parseFloat(timeColumns[i].innerHTML);
+        }
+        if(time>max){
+            max = time;
+        }
+    }
+    document.getElementById('worstTime').innerHTML = parseFloat(max).toFixed(2);
+}
+
+const findBestTime = ()=>{
+    let timeColumns = document.querySelectorAll('.column4');
+    let min = Number.MAX_SAFE_INTEGER;
+    for(let i=1;i<timeColumns.length;i++){
+        let time;
+        if (timeColumns[i].childElementCount>0){
+            time = parseFloat(timeColumns[i].firstElementChild.value);
+        }else{
+            time = parseFloat(timeColumns[i].innerHTML);
+        }
+        if(time<min){
+            min = time;
+        }
+    }
+    document.getElementById('bestTime').innerHTML = parseFloat(min).toFixed(2);
+    
+}
+
+const findAverageTime = ()=>{
+    let timeColumns = document.querySelectorAll('.column4');
+    let sum = -1;
+    for(let i=1;i<timeColumns.length;i++){
+        let time;
+        if (timeColumns[i].childElementCount>0){
+            time = parseFloat(timeColumns[i].firstElementChild.value);
+        }else{
+            time = parseFloat(timeColumns[i].innerHTML);
+        }
+        sum+=time;
+    }
+    document.getElementById('averageTime').innerHTML = parseFloat(sum/timeColumns.length).toFixed(2);
+    
+}
 //----------------------------------listeners-----------------------------------------------------//
 
 document.body.addEventListener('animationend', () => {
@@ -196,50 +261,66 @@ document.getElementById('myFloat').addEventListener('click', () => {
     addNewRow();
 });
 
-const deleteEventListener = () => {
-    document.querySelectorAll('tr i.bi-trash').forEach(element => {
+// const deleteEventListener = () => {
+//     document.querySelectorAll('tr i.bi-trash').forEach(element => {
 
-        element.addEventListener('click', (element) => {
-            element = element || window.event;
-            let target = element.target;
-            console.log(target.parentNode.parentNode);
-            deleteRow(target);
-        });
+//         element.addEventListener('click', (element) => {
+//             element = element || window.event;
+//             let target = element.target;
+//             console.log(target.parentNode.parentNode);
+//             deleteRow(target);
+//         });
 
-    });
-}
-
-const saveEventListener = () => {
-    document.querySelectorAll('tr i.bi-check-lg').forEach(element => {
-
-        element.addEventListener('click', (element) => {
-            element = element || window.event;
-            let target = element.target;
-            console.log(target.parentNode.parentNode);
-            saveEditedRow(target);
-        });
-
-    });
-}
-
-const editEventListener = () => {
-    document.querySelectorAll('tr i.bi-pencil').forEach(element => {
-
-        element.addEventListener('click', (element) => {
-            element = element || window.event;
-            let target = element.target;
-            console.log(target.parentNode.parentNode);
-            editRow(target);
-        });
-
-    });
-}
-
-
-// window.onclick = e => {
-//     console.log(e);
-//     console.log(e.target.parentNode.parentNode);
-//     console.log(e.path);
-//     console.log(e.target);  // to get the element
-//     console.log(e.target.tagName);  // to get the element tag name alone
+//     });
 // }
+
+// const saveEventListener = () => {
+//     document.querySelectorAll('tr i.bi-check-lg').forEach(element => {
+
+//         element.addEventListener('click', (element) => {
+//             element = element || window.event;
+//             let target = element.target;
+//             console.log(target.parentNode.parentNode);
+//             saveEditedRow(target);
+//         });
+
+//     });
+// }
+
+// const editEventListener = () => {
+//     document.querySelectorAll('tr i.bi-pencil').forEach(element => {
+
+//         element.addEventListener('click', (element) => {
+//             element = element || window.event;
+//             let target = element.target;
+//             console.log(target.parentNode.parentNode);
+//             editRow(target);
+//         });
+
+//     });
+// }
+
+document.querySelector('table').addEventListener('click', function (evt) {
+    const
+        target = evt.target;
+
+    if (target.classList.contains('bi-pencil')) {
+        console.log(target.parentNode.parentNode);
+        editRow(target);
+    }
+
+    if (target.classList.contains('bi-check-lg')) {
+        console.log(target.parentNode.parentNode);
+        saveEditedRow(target);
+    }
+
+    if (target.classList.contains('bi-trash')) {
+        console.log(target.parentNode.parentNode);
+        deleteRow(target);
+    }
+
+    findWorstTime();
+    findBestTime();
+    findAverageTime();
+    console.log(evt.target);
+}, false);

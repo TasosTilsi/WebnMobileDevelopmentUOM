@@ -46,11 +46,11 @@ main {
     font-family: 'Comfortaa', cursive;
 }
 
-i{
+i {
     font-size: 1.3em;
 }
 
-.bi-pencil{
+.bi-pencil {
     display: none;
 }
 
@@ -95,7 +95,7 @@ tr {
     justify-content: space-evenly;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: #D9D2BC;
 }
 
@@ -142,8 +142,26 @@ tbody>tr:hover {
         font-size: smaller;        
     } */
 
-    .table thead {
+    /* .table thead {
         display: none;
+    } */
+
+    .table-head{
+        height: auto;
+    }
+
+    thead tr th.col{
+        margin: 0.5em;
+        padding: 0px;
+    }
+
+    thead tr th.column1 ,thead tr th.column4,thead tr th.column6{
+        width: auto;
+    }
+
+    .table thead tr{
+        flex-direction: column;
+        align-items: center;
     }
 
     .table td {
@@ -166,24 +184,29 @@ tbody>tr:hover {
         display: inline-block;
     }
 
-    .table th, .table td {
-        text-align: left;
-    }
-
     /* .table th, .table td {
-        display: table-cell;
-        padding: .25em .5em;
-      } */
-    .table th:first-child, .table td:first-child {
-        padding-left: 0;
-    }
-
-    .table th:last-child, .table td:last-child {
-        padding-right: 0;
-    }
+        text-align: left;
+    } */
 
     tbody tr {
         display: table-row !important;
+    }
+
+    tfoot {
+        display: flex;
+        justify-content: center;
+    }
+
+    tfoot th.col{
+        margin: 0.5em;
+        padding: 0px;
+    }
+
+    tfoot tr.row {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        align-content: center;
     }
 
 
@@ -200,14 +223,13 @@ tbody>tr:hover {
         position: relative;
     }
 
-
     table {
         font-size: smaller;
     }
 
-    .column3, .column5 {
+    /* .column3, .column5 {
         display: none;
-    }
+    } */
 
     .afloat {
         position: fixed;
@@ -240,8 +262,22 @@ tbody>tr:hover {
         visibility: hidden;
     }
 
-    .table thead {
-        display: none;
+    .table-head{
+        height: auto;
+    }
+
+    thead tr th.col{
+        margin: 0.5em;
+        padding: 0px;
+    }
+
+    thead tr th.column1 ,thead tr th.column4,thead tr th.column6{
+        width: auto;
+    }
+
+    .table thead tr{
+        flex-direction: column;
+        align-items: center;
     }
 
     .table td {
@@ -264,24 +300,29 @@ tbody>tr:hover {
         display: inline-block;
     }
 
-    .table th, .table td {
-        text-align: left;
-    }
-
     /* .table th, .table td {
-        display: table-cell;
-        padding: .25em .5em;
-      } */
-    .table th:first-child, .table td:first-child {
-        padding-left: 0;
-    }
-
-    .table th:last-child, .table td:last-child {
-        padding-right: 0;
-    }
+        text-align: left;
+    } */
 
     tbody tr {
         display: table-row !important;
+    }
+
+    tfoot {
+        display: flex;
+        justify-content: center;
+    }
+
+    tfoot th.col{
+        margin: 0.5em;
+        padding: 0px;
+    }
+
+    tfoot tr.row {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        align-content: center;
     }
 
 }
