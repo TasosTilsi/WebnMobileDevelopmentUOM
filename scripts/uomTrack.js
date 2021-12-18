@@ -215,7 +215,11 @@ const findWorstTime = ()=>{
             max = time;
         }
     }
-    document.getElementById('worstTime').innerHTML = parseFloat(max).toFixed(2);
+    if(max === -1){
+        document.getElementById('worstTime').innerHTML = "-";
+    }else{
+        document.getElementById('worstTime').innerHTML = parseFloat(max).toFixed(2);
+    }
 }
 
 const findBestTime = ()=>{
@@ -232,13 +236,17 @@ const findBestTime = ()=>{
             min = time;
         }
     }
-    document.getElementById('bestTime').innerHTML = parseFloat(min).toFixed(2);
+    if(min === Number.MAX_SAFE_INTEGER){
+        document.getElementById('bestTime').innerHTML = "-";
+    }else{
+        document.getElementById('bestTime').innerHTML = parseFloat(min).toFixed(2);
+    }
     
 }
 
 const findAverageTime = ()=>{
     let timeColumns = document.querySelectorAll('.column4');
-    let sum = -1;
+    let sum = 0;
     for(let i=1;i<timeColumns.length;i++){
         let time;
         if (timeColumns[i].childElementCount>0){
@@ -248,7 +256,12 @@ const findAverageTime = ()=>{
         }
         sum+=time;
     }
-    document.getElementById('averageTime').innerHTML = parseFloat(sum/timeColumns.length).toFixed(2);
+    if(sum === 0){
+        document.getElementById('averageTime').innerHTML = "-";
+    }else{
+        document.getElementById('averageTime').innerHTML = parseFloat(sum/(timeColumns.length-1)).toFixed(2);
+    }
+    
     
 }
 //----------------------------------listeners-----------------------------------------------------//
