@@ -3,7 +3,7 @@
     "name": "UoM Track",
     "icons": [
       {
-        "src": "./resources/icon_320.png",
+        "src": "resources/icon_320.png",
         "type": "image/png",
         "sizes": "320x320"
       }
