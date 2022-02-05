@@ -10,7 +10,7 @@ body, html {
 }
 
 body {
-    background-image: url("https://images.pexels.com/photos/163444/sport-treadmill-tor-route-163444.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-image: url("../resources/large.jpeg");
     background-color: #cccccc;
     min-width: 100%;
     background-repeat: no-repeat;
@@ -19,12 +19,76 @@ body {
     font-family: 'Comfortaa', cursive;
 }
 
-.afloat {
+#mainTitle {
+    display: flex;
+    align-items: center;
+    justify-items: stretch;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.modal-body {
+    display: flex;
+    align-items: center;
+    justify-items: stretch;
+    align-content: center;
+    flex-direction: column;
+    background-color: #E6DDC4;
+}
+
+.modal-header {
+    background-color: #181d31;
+    color: #E6DDC4;
+}
+
+.modal-footer {
+    background-color: #181d31;
+    color: #E6DDC4;
+    justify-content: space-evenly !important;
+}
+
+.insideModalBodyDivs {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.insideModalBodyDivs>label {
+    width: 30%;
+}
+
+.input-group-text {
+    height: 100%;
+}
+
+.insideModalBodyDivs>.hideColumnsContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.floatContainer {
     position: fixed;
-    width: 60px;
-    height: 60px;
     bottom: 40px;
     right: 40px;
+    display: flex;
+    align-items: center;
+    justify-items: stretch;
+    align-content: center;
+    flex-direction: column;
+}
+
+.afloat {
+    /* position: fixed; */
+    width: 60px;
+    height: 60px;
+    /* bottom: 40px;
+    right: 40px; */
     background-color: #181d31;
     color: #E6DDC4;
     border-radius: 50px;
@@ -39,6 +103,29 @@ body {
 }
 
 .afloat:hover {
+    color: #8B8E98;
+}
+
+.settingsfloat {
+    /* position: fixed; */
+    width: 45px;
+    height: 45px;
+    /* bottom: 100px;
+    right: 50px; */
+    background-color: #181d31;
+    color: #E6DDC4;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    text-decoration: none;
+}
+
+.settingsfloat:hover {
     color: #8B8E98;
 }
 
@@ -127,7 +214,7 @@ tbody>tr:hover {
 
 
     body {
-        background-image: url("https://images.pexels.com/photos/3905827/pexels-photo-3905827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+        background-image: url("../resources/medium.jpeg");
         background-repeat: no-repeat;
         background-size: auto;
         background-position: center;
@@ -146,20 +233,20 @@ tbody>tr:hover {
         display: none;
     } */
 
-    .table-head{
+    .table-head {
         height: auto;
     }
 
-    thead tr th.col{
+    thead tr th.col {
         margin: 0.5em;
         padding: 0px;
     }
 
-    thead tr th.column1 ,thead tr th.column4,thead tr th.column6{
+    thead tr th.column1, thead tr th.column4, thead tr th.column6 {
         width: auto;
     }
 
-    .table thead tr{
+    .table thead tr {
         flex-direction: column;
         align-items: center;
     }
@@ -197,7 +284,7 @@ tbody>tr:hover {
         justify-content: center;
     }
 
-    tfoot th.col{
+    tfoot th.col {
         margin: 0.5em;
         padding: 0px;
     }
@@ -216,7 +303,7 @@ tbody>tr:hover {
 @media screen and (max-width: 430px) {
 
     body {
-        background-image: url("https://images.pexels.com/photos/1127120/pexels-photo-1127120.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+        background-image: url("../resources/small.jpeg");
         background-repeat: no-repeat;
         background-size: auto;
         background-position: center;
@@ -227,55 +314,27 @@ tbody>tr:hover {
         font-size: smaller;
     }
 
-    /* .column3, .column5 {
-        display: none;
-    } */
-
-    .afloat {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 40px;
-        right: 40px;
-        background-color: #181d31;
-        color: #E6DDC4;
-        border-radius: 50px;
-        text-align: center;
-        box-shadow: 2px 2px 3px #999;
-        flex-wrap: nowrap;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        text-decoration: none;
-    }
-
     .wrap-table {
         margin-top: 2em;
         padding-top: 3em;
         position: relative;
-        animation-name: animate400Table;
-        animation-duration: 3s;
-        animation-delay: 2s;
-        animation-fill-mode: forwards;
-        animation-iteration-count: 1;
         visibility: hidden;
     }
 
-    .table-head{
+    .table-head {
         height: auto;
     }
 
-    thead tr th.col{
+    thead tr th.col {
         margin: 0.5em;
         padding: 0px;
     }
 
-    thead tr th.column1 ,thead tr th.column4,thead tr th.column6{
+    thead tr th.column1, thead tr th.column4, thead tr th.column6 {
         width: auto;
     }
 
-    .table thead tr{
+    .table thead tr {
         flex-direction: column;
         align-items: center;
     }
@@ -313,7 +372,7 @@ tbody>tr:hover {
         justify-content: center;
     }
 
-    tfoot th.col{
+    tfoot th.col {
         margin: 0.5em;
         padding: 0px;
     }
@@ -344,18 +403,6 @@ tbody>tr:hover {
 
 
 @keyframes animateTable {
-    from {
-        top: -400px;
-        visibility: visible;
-    }
-
-    to {
-        top: 100px;
-        visibility: visible;
-    }
-}
-
-@keyframes animate400Table {
     from {
         top: -400px;
         visibility: visible;

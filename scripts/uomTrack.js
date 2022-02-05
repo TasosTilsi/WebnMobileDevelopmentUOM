@@ -31,6 +31,7 @@ const checkForClassAddedOrRemoved = () => {
 const displayEditColumn = () => {
     let columnsList = document.getElementsByClassName('column6');
     let myFloat = document.getElementById('myFloat');
+    let mySettings = document.getElementById('mySettings');
     if (hasOurTableClassUomTrack(uomTrackTable)) {
 
         for (let i = 0; i < columnsList.length; i++) {
@@ -38,6 +39,7 @@ const displayEditColumn = () => {
         }
 
         myFloat.style.display = 'flex';
+        mySettings.style.display = 'flex';
 
     } else {
 
@@ -46,6 +48,7 @@ const displayEditColumn = () => {
         }
 
         myFloat.style.display = 'none';
+        mySettings.style.display = 'none';
     }
 }
 
@@ -96,30 +99,6 @@ const addNewRow = () => {
 
     let tableBody = document.querySelector('tbody');
     tableBody.insertAdjacentHTML('beforeend', newRow());
-
-    // let latestAddedRow = document.querySelectorAll('tr i.bi-trash')[document.querySelectorAll('tr i.bi-trash').length - 1];
-    // latestAddedRow.addEventListener('click', (element) => {
-    //     element = element || window.event;
-    //     let target = element.target;
-    //     console.log(target.parentNode.parentNode);
-    //     deleteRow(target);
-    // });
-
-    // latestAddedRow = document.querySelectorAll('tr i.bi-check-lg')[document.querySelectorAll('tr i.bi-trash').length - 1];
-    // latestAddedRow.addEventListener('click', (element) => {
-    //     element = element || window.event;
-    //     let target = element.target;
-    //     console.log(target.parentNode.parentNode);
-    //     saveEditedRow(target);
-    // });
-
-    // latestAddedRow = document.querySelectorAll('tr i.bi-pencil')[document.querySelectorAll('tr i.bi-trash').length - 1];
-    // latestAddedRow.addEventListener('click', (element) => {
-    //     element = element || window.event;
-    //     let target = element.target;
-    //     console.log(target.parentNode.parentNode);
-    //     editRow(target);
-    // });
 }
 
 const deleteRow = (element) => {
@@ -201,68 +180,128 @@ const editRow = (element) => {
     targetRow.querySelector('.bi-pencil').style.display = 'none';
 }
 
-const findWorstTime = ()=>{
+const findWorstTime = () => {
     let timeColumns = document.querySelectorAll('.column4');
     let max = -1;
-    for(let i=1;i<timeColumns.length;i++){
+    for (let i = 1; i < timeColumns.length; i++) {
         let time;
-        if (timeColumns[i].childElementCount>0){
+        if (timeColumns[i].childElementCount > 0) {
             time = parseFloat(timeColumns[i].firstElementChild.value);
-        }else{
+        } else {
             time = parseFloat(timeColumns[i].innerHTML);
         }
-        if(time>max){
+        if (time > max) {
             max = time;
         }
     }
-    if(max === -1){
+    if (max === -1) {
         document.getElementById('worstTime').innerHTML = "-";
-    }else{
+    } else {
         document.getElementById('worstTime').innerHTML = parseFloat(max).toFixed(2);
     }
 }
 
-const findBestTime = ()=>{
+const findBestTime = () => {
     let timeColumns = document.querySelectorAll('.column4');
     let min = Number.MAX_SAFE_INTEGER;
-    for(let i=1;i<timeColumns.length;i++){
+    for (let i = 1; i < timeColumns.length; i++) {
         let time;
-        if (timeColumns[i].childElementCount>0){
+        if (timeColumns[i].childElementCount > 0) {
             time = parseFloat(timeColumns[i].firstElementChild.value);
-        }else{
+        } else {
             time = parseFloat(timeColumns[i].innerHTML);
         }
-        if(time<min){
+        if (time < min) {
             min = time;
         }
     }
-    if(min === Number.MAX_SAFE_INTEGER){
+    if (min === Number.MAX_SAFE_INTEGER) {
         document.getElementById('bestTime').innerHTML = "-";
-    }else{
+    } else {
         document.getElementById('bestTime').innerHTML = parseFloat(min).toFixed(2);
     }
-    
+
 }
 
-const findAverageTime = ()=>{
+const findAverageTime = () => {
     let timeColumns = document.querySelectorAll('.column4');
     let sum = 0;
-    for(let i=1;i<timeColumns.length;i++){
+    for (let i = 1; i < timeColumns.length; i++) {
         let time;
-        if (timeColumns[i].childElementCount>0){
+        if (timeColumns[i].childElementCount > 0) {
             time = parseFloat(timeColumns[i].firstElementChild.value);
-        }else{
+        } else {
             time = parseFloat(timeColumns[i].innerHTML);
         }
-        sum+=time;
+        sum += time;
     }
-    if(sum === 0){
+    if (sum === 0) {
         document.getElementById('averageTime').innerHTML = "-";
-    }else{
-        document.getElementById('averageTime').innerHTML = parseFloat(sum/(timeColumns.length-1)).toFixed(2);
+    } else {
+        document.getElementById('averageTime').innerHTML = parseFloat(sum / (timeColumns.length - 1)).toFixed(2);
     }
-    
-    
+
+
+}
+
+const hideColumn = () => {
+    let hideColumnCountry = document.getElementById("hideColumnCountry");
+    let hideColumnSurname = document.getElementById("hideColumnSurname");
+    let hideColumnFirstname = document.getElementById("hideColumnFirstname");
+    let hideColumnPersBest = document.getElementById("hideColumnPersBest");
+    let hideColumnDate = document.getElementById("hideColumnDate");
+
+    function hide(hideColumn){
+        if(hideColumn.checked){
+            for (const element of document.getElementsByClassName(hideColumn.getAttribute('column'))) {
+                // console.log(element)
+                if (element.style.display != "none") {
+                    element.style.display = "none";
+                }
+            }
+        }
+    };
+
+    hide(hideColumnCountry);
+    hide(hideColumnSurname);
+    hide(hideColumnFirstname);
+    hide(hideColumnPersBest);
+    hide(hideColumnDate);
+
+}
+
+
+
+const unhideColumn = () => {
+
+    let hideColumnCountry = document.getElementById("hideColumnCountry");
+    let hideColumnSurname = document.getElementById("hideColumnSurname");
+    let hideColumnFirstname = document.getElementById("hideColumnFirstname");
+    let hideColumnPersBest = document.getElementById("hideColumnPersBest");
+    let hideColumnDate = document.getElementById("hideColumnDate");
+
+    function unhide(hideColumn){
+        if(!hideColumn.checked){
+            for (const element of document.getElementsByClassName(hideColumn.getAttribute('column'))) {
+                // console.log(element)
+                if (element.style.display == "none") {
+                    element.style.display = "unset";
+                }
+            }
+        }
+    };
+
+    unhide(hideColumnCountry);
+    unhide(hideColumnSurname);
+    unhide(hideColumnFirstname);
+    unhide(hideColumnPersBest);
+    unhide(hideColumnDate);
+
+}
+
+const changeMainTitleTrackRace = () => {
+    let trackRaceOption = document.getElementById('trackRaceOptions').value;
+    document.getElementById('trackRaceTitle').innerHTML = trackRaceOption;
 }
 //----------------------------------listeners-----------------------------------------------------//
 
@@ -272,50 +311,18 @@ document.body.addEventListener('animationend', () => {
 
 document.getElementById('myFloat').addEventListener('click', () => {
     addNewRow();
+    hideColumn();
+    unhideColumn();
 });
 
-// const deleteEventListener = () => {
-//     document.querySelectorAll('tr i.bi-trash').forEach(element => {
-
-//         element.addEventListener('click', (element) => {
-//             element = element || window.event;
-//             let target = element.target;
-//             console.log(target.parentNode.parentNode);
-//             deleteRow(target);
-//         });
-
-//     });
-// }
-
-// const saveEventListener = () => {
-//     document.querySelectorAll('tr i.bi-check-lg').forEach(element => {
-
-//         element.addEventListener('click', (element) => {
-//             element = element || window.event;
-//             let target = element.target;
-//             console.log(target.parentNode.parentNode);
-//             saveEditedRow(target);
-//         });
-
-//     });
-// }
-
-// const editEventListener = () => {
-//     document.querySelectorAll('tr i.bi-pencil').forEach(element => {
-
-//         element.addEventListener('click', (element) => {
-//             element = element || window.event;
-//             let target = element.target;
-//             console.log(target.parentNode.parentNode);
-//             editRow(target);
-//         });
-
-//     });
-// }
+document.getElementById('saveSettings').addEventListener('click', () => {
+    changeMainTitleTrackRace();
+    hideColumn();
+    unhideColumn();
+});
 
 document.querySelector('table').addEventListener('click', function (evt) {
-    const
-        target = evt.target;
+    const target = evt.target;
 
     if (target.classList.contains('bi-pencil')) {
         console.log(target.parentNode.parentNode);
