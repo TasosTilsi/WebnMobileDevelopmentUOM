@@ -8,7 +8,7 @@
         "sizes": "320x320"
       }
     ],
-    "start_url": "/index.html",
+    "start_url": "./index.html",
     "background_color": "white",
     "display": "standalone",
     "description": "This is a website that took place in the framework of the postgraduate program of Applied Informatics of the University of Macedonia"
