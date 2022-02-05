@@ -60,6 +60,10 @@ body {
     width: 30%;
 }
 
+.insideModalBodyDivs>button {
+    width: 100%;
+}
+
 .input-group-text {
     height: 100%;
 }

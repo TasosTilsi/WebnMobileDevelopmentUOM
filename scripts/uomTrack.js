@@ -136,20 +136,6 @@ const saveEditedRow = (element) => {
         targetRow.querySelector('.bi-pencil').style.display = 'unset';
     }
 
-    /* // Check browser support
-    if (typeof (Storage) !== 'undefined') {
-        // Store
-        localStorage.setItem('countryFlag', countryFlag);
-        localStorage.setItem('surname', surname);
-        localStorage.setItem('firstname', firstname);
-        localStorage.setItem('perBest', perBest);
-        localStorage.setItem('date', date);
-    } else {
-        console.log('Sorry, your browser does not support Web Storage...');
-    } */
-
-
-
 }
 
 const editRow = (element) => {
@@ -251,8 +237,8 @@ const hideColumn = () => {
     let hideColumnPersBest = document.getElementById("hideColumnPersBest");
     let hideColumnDate = document.getElementById("hideColumnDate");
 
-    function hide(hideColumn){
-        if(hideColumn.checked){
+    function hide(hideColumn) {
+        if (hideColumn.checked) {
             for (const element of document.getElementsByClassName(hideColumn.getAttribute('column'))) {
                 // console.log(element)
                 if (element.style.display != "none") {
@@ -280,8 +266,8 @@ const unhideColumn = () => {
     let hideColumnPersBest = document.getElementById("hideColumnPersBest");
     let hideColumnDate = document.getElementById("hideColumnDate");
 
-    function unhide(hideColumn){
-        if(!hideColumn.checked){
+    function unhide(hideColumn) {
+        if (!hideColumn.checked) {
             for (const element of document.getElementsByClassName(hideColumn.getAttribute('column'))) {
                 // console.log(element)
                 if (element.style.display == "none") {
@@ -321,6 +307,20 @@ document.getElementById('saveSettings').addEventListener('click', () => {
     unhideColumn();
 });
 
+document.getElementById('saveInStorage').addEventListener('click', () => {
+    /* // Check browser support
+     if (typeof (Storage) !== 'undefined') {
+         // Store
+         localStorage.setItem('countryFlag', countryFlag);
+         localStorage.setItem('surname', surname);
+         localStorage.setItem('firstname', firstname);
+         localStorage.setItem('perBest', perBest);
+         localStorage.setItem('date', date);
+     } else {
+         console.log('Sorry, your browser does not support Web Storage...');
+     } */
+});
+
 document.querySelector('table').addEventListener('click', function (evt) {
     const target = evt.target;
 
@@ -344,3 +344,43 @@ document.querySelector('table').addEventListener('click', function (evt) {
     findAverageTime();
     console.log(evt.target);
 }, false);
+
+
+//----------------------------------listeners-----------------------------------------------------//
+
+function addToHomeScreen() {
+    let a2hsBtn = document.querySelector(".ad2hs-prompt");  // hide our user interface that shows our A2HS button
+    a2hsBtn.style.display = 'none';  // Show the prompt
+    deferredPrompt.prompt();  // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice
+        .then(function (choiceResult) {
+
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+                document.getElementById("installAssAppLabel").innerText = "App Installed"
+            } else {
+                console.log('User dismissed the A2HS prompt');
+            }
+
+            deferredPrompt = null;
+
+        });
+}
+
+function showAddToHomeScreen() {
+
+    let a2hsBtn = document.querySelector(".ad2hs-prompt");
+    a2hsBtn.style.display = "block";
+    a2hsBtn.addEventListener("click", addToHomeScreen);
+
+}
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', function (e) {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
+
+    showAddToHomeScreen();
+});
