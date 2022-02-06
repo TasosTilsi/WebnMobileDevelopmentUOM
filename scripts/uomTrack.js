@@ -20,9 +20,6 @@ const checkForClassAddedOrRemoved = () => {
     changeColumn1IntoDropdown();
     changeColumnsIntoInputs();
     changeColumnIntoCalendar();
-    // deleteEventListener();
-    // saveEventListener();
-    // editEventListener();
     findWorstTime();
     findBestTime();
     findAverageTime();
@@ -211,7 +208,7 @@ const findAverageTime = () => {
 
     let timeColumns = document.querySelectorAll('.column4');
     let sum = 0;
-    for (let i = 1; i < timeColumns.length -1; i++) {
+    for (let i = 1; i < timeColumns.length - 1; i++) {
         let time;
         if (timeColumns[i].childElementCount > 0) {
             time = parseFloat(timeColumns[i].firstElementChild.value);
@@ -299,23 +296,81 @@ const addFilters = () => {
     }
 }
 
-const saveData = ()=>{
+const saveData = () => {
     // Check browser support
     if (typeof (Storage) !== 'undefined') {
+
         // Store
-        let json, countries, surnames, firstnames, times, dates;
+        let json = [], columns;
+
+        if (localStorage.getItem("json") != null) {
+            localStorage.setItem('json', json);
+            document.getElementById('loadFromStorage').disabled = false;
+        }
 
         // let countries = document.getElementsByClassName('column1').getElementsByClassName('bi-check-lg');
-        
-        json = {
-            'countries':countries,
-            'surnames':surnames,
-            'firstnames':firstnames,
-            'times':times,
-            'dates':dates,
+
+        let column1List = document.getElementsByClassName('column1');
+        let column2List = document.getElementsByClassName('column2');
+        let column3List = document.getElementsByClassName('column3');
+        let column4List = document.getElementsByClassName('column4');
+        let column5List = document.getElementsByClassName('column5');
+        for (let i = 1; i < column1List.length - 1; i++) {
+            let country = column1List[i].innerText || column1List[i].firstElementChild.value;
+            let surname = column2List[i].innerText || column2List[i].firstElementChild.value;
+            let name = column3List[i].innerText || column3List[i].firstElementChild.value;
+            let perBest = column4List[i].innerText || column4List[i].firstElementChild.value;
+            let date = column5List[i].innerText || column5List[i].firstElementChild.value;
+            columns = {
+                'row': i,
+                'country': country,
+                'surname': surname,
+                'name': name,
+                'perBest': perBest,
+                'date': date,
+            }
+            json.push(columns);
         }
 
         localStorage.setItem('json', JSON.stringify(json));
+    } else {
+        console.log('Sorry, your browser does not support Web Storage...');
+    }
+}
+
+const loadData = () => {
+    // Check browser support
+    if (typeof (Storage) !== 'undefined') {
+        document.getElementById("clearAllRows").click();
+        // Store
+        let json, columns;
+
+        json = JSON.parse(localStorage.getItem("json"));
+
+        console.log(json);
+
+        // let countries = document.getElementsByClassName('column1').getElementsByClassName('bi-check-lg');
+
+        let column1List, column2List, column3List, column4List, column5List;
+
+        for (let i = 0; i < json.length; i++) {
+            document.getElementById('myFloat').click();
+            column1List = document.getElementsByClassName('column1');
+            column2List = document.getElementsByClassName('column2');
+            column3List = document.getElementsByClassName('column3');
+            column4List = document.getElementsByClassName('column4');
+            column5List = document.getElementsByClassName('column5');
+
+            column1List[i + 1].firstElementChild.value = json[i].country;
+            column2List[i + 1].firstElementChild.value = json[i].surname;
+            column3List[i + 1].firstElementChild.value = json[i].name;
+            column4List[i + 1].firstElementChild.value = json[i].perBest;
+            column5List[i + 1].firstElementChild.value = json[i].date;
+
+        }
+
+        document.getElementById('myTable').click();
+
     } else {
         console.log('Sorry, your browser does not support Web Storage...');
     }
@@ -357,6 +412,18 @@ document.getElementById('saveSettings').addEventListener('click', () => {
 
 document.getElementById('saveInStorage').addEventListener('click', () => {
     saveData();
+});
+
+document.getElementById('loadFromStorage').addEventListener('click', () => {
+    loadData();
+});
+
+document.getElementById('mySettings').addEventListener('click', () => {
+
+    if (localStorage.getItem("json") != null) {
+        document.getElementById('loadFromStorage').disabled = false;
+    }
+
 });
 
 document.querySelector('table').addEventListener('click', function (evt) {

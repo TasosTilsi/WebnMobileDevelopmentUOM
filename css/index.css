@@ -64,6 +64,10 @@ body {
     width: 100%;
 }
 
+#saveInStorage,#loadFromStorage{
+    width: 50%;
+}
+
 .input-group-text {
     height: 100%;
 }

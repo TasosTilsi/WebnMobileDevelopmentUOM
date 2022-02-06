@@ -19,14 +19,14 @@
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- <script>
+    <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js')
                 .then(function () {
                     console.log('Service Worker Registered');
                 });
         }
-    </script> -->
+    </script>
 
     <title>UomTrack</title>
 </head>
@@ -139,7 +139,7 @@
                             </th>
                             <th class="column2 col col-2">
                                 <input type="text" class="form-control" id="surnameFilter"
-                                    placeholder="Search for Surnname">
+                                    placeholder="Search for Surname">
                             </th>
                             <th class="column3 col col-2">
                                 <input type="text" class="form-control" id="nameFilter"
@@ -153,8 +153,11 @@
                                 <input type="text" class="form-control" id="dateFilter" placeholder="Search for date">
                             </th>
                             <th class="column6 col col-1">
-                                <button id="saveAllEditedRows" type="button" class="btn btn-primary">
-                                    <i class="bi bi-save"></i>
+                                <button id="saveAllEditedRows" type="button" class="btn btn-primary" title="Save All">
+                                    <i class="fas fa-save"></i>
+                                </button>
+                                <button id="clearAllRows" type="button" class="btn btn-danger" title="Clear All">
+                                    <i class="fas fa-eraser"></i>
                                 </button>
                             </th>
                         </tr>
@@ -281,6 +284,7 @@
                     <div class="insideModalBodyDivs">
                         <label>Save in Local Storage</label>
                         <button id="saveInStorage" type="button" class="btn btn-primary">Save Data</button>
+                        <button id="loadFromStorage" type="button" class="btn btn-light" disabled>Load Data</button>
                     </div>
                     <hr>
                     <div class="insideModalBodyDivs">
@@ -288,7 +292,7 @@
                         <button id="installApp" type="button" class="btn btn-info ad2hs-prompt">Install</button>
                     </div>
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button id="saveSettings" type="button" class="btn btn-success" data-dismiss="modal">Save
