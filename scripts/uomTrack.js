@@ -377,6 +377,7 @@ const loadData = () => {
         //----------------------------------------------------------------------------------//
         // Store trackRaceTitle
         document.getElementById('trackRaceTitle').innerText = localStorage.getItem('trackRaceTitle');
+        document.getElementById('trackRaceOptions').value = localStorage.getItem('trackRaceTitle');
 
 
     } else {
