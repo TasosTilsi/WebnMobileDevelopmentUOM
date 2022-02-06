@@ -19,14 +19,14 @@
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script>
+    <!-- <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js')
                 .then(function () {
                     console.log('Service Worker Registered');
                 });
         }
-    </script>
+    </script> -->
 
     <title>UomTrack</title>
 </head>
@@ -38,7 +38,7 @@
     <main id="mainSection">
         <div class="wrap-table">
             <div class="item table-responsive container">
-                <table class="table container uomTrack js-sort-table">
+                <table id="myTable" class="table container uomTrack js-sort-table">
                     <thead>
                         <tr class="table-head row">
                             <th class="column1 col col-1 js-sort-input">Country</th>
@@ -132,6 +132,32 @@
                         </tr>
                     </tbody>
                     <tfoot>
+                        <tr id="filterRow" class="table-head row">
+                            <th class="column1 col col-1">
+                                <input type="text" class="form-control" id="countryFilter"
+                                    placeholder="Search for Country">
+                            </th>
+                            <th class="column2 col col-2">
+                                <input type="text" class="form-control" id="surnameFilter"
+                                    placeholder="Search for Surnname">
+                            </th>
+                            <th class="column3 col col-2">
+                                <input type="text" class="form-control" id="nameFilter"
+                                    placeholder="Search for Firstname">
+                            </th>
+                            <th class="column4 col col-1">
+                                <input type="text" class="form-control" id="personalBestFilter"
+                                    placeholder="Search for Pers. Best">
+                            </th>
+                            <th class="column5 col col-2">
+                                <input type="text" class="form-control" id="dateFilter" placeholder="Search for date">
+                            </th>
+                            <th class="column6 col col-1">
+                                <button id="saveAllEditedRows" type="button" class="btn btn-primary">
+                                    <i class="bi bi-save"></i>
+                                </button>
+                            </th>
+                        </tr>
                         <tr class="row">
                             <th class="col">Best Time: <span id="bestTime"></span></th>
                             <th class="col">Worst Time: <span id="worstTime"></span></th>
@@ -248,6 +274,11 @@
                     </div>
                     <hr>
                     <div class="insideModalBodyDivs">
+                        <label>Show Filters</label>
+                        <button id="addFilters" type="button" class="btn btn-secondary">Add Filters</button>
+                    </div>
+                    <hr>
+                    <div class="insideModalBodyDivs">
                         <label>Save in Local Storage</label>
                         <button id="saveInStorage" type="button" class="btn btn-primary">Save Data</button>
                     </div>
@@ -256,9 +287,8 @@
                         <label id="installAssAppLabel">Install as App</label>
                         <button id="installApp" type="button" class="btn btn-info ad2hs-prompt">Install</button>
                     </div>
-
-                    
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button id="saveSettings" type="button" class="btn btn-success" data-dismiss="modal">Save
@@ -280,6 +310,7 @@
     <!-- <script type="module" src="./scripts/bootstrap.bundle.min.js"></script> -->
     <script type="module" src="./scripts/uomTrack.js"></script>
     <script type="module" src="./scripts/sort-table.js"></script>
+    <script type="module" src="./scripts/filters.js"></script>
 </body>
 
 </html>

@@ -157,6 +157,10 @@ i {
     visibility: hidden;
 }
 
+#filterRow{
+    display: none;
+}
+
 .table-head {
     height: 4em;
     background-color: #181d31;
@@ -284,8 +288,7 @@ tbody>tr:hover {
     }
 
     tfoot {
-        display: flex;
-        justify-content: center;
+        display: block;
     }
 
     tfoot th.col {
@@ -300,6 +303,9 @@ tbody>tr:hover {
         align-content: center;
     }
 
+    #filterRow > th{
+        width: 90%;
+    }
 
 }
 
@@ -372,8 +378,7 @@ tbody>tr:hover {
     }
 
     tfoot {
-        display: flex;
-        justify-content: center;
+        display: block;
     }
 
     tfoot th.col {
@@ -386,6 +391,10 @@ tbody>tr:hover {
         justify-content: center;
         flex-direction: column;
         align-content: center;
+    }
+
+    #filterRow > th{
+        width: 90%;
     }
 
 }

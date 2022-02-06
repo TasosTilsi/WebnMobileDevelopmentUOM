@@ -29,6 +29,7 @@ const checkForClassAddedOrRemoved = () => {
 }
 
 const displayEditColumn = () => {
+
     let columnsList = document.getElementsByClassName('column6');
     let myFloat = document.getElementById('myFloat');
     let mySettings = document.getElementById('mySettings');
@@ -55,7 +56,7 @@ const displayEditColumn = () => {
 const changeColumn1IntoDropdown = () => {
 
     let column1List = document.getElementsByClassName('column1');
-    for (let i = 1; i < column1List.length; i++) {
+    for (let i = 1; i < column1List.length - 1; i++) {
         let countryFlag = column1List[i].innerText;
         column1List[i].innerHTML = dropdown();
         column1List[i].firstElementChild.value = countryFlag;
@@ -67,7 +68,7 @@ const changeColumnsIntoInputs = () => {
     let column2List = document.getElementsByClassName('column2');
     let column3List = document.getElementsByClassName('column3');
     let column4List = document.getElementsByClassName('column4');
-    for (let i = 1; i < column2List.length; i++) {
+    for (let i = 1; i < column2List.length - 1; i++) {
 
         let surname = column2List[i].innerText;
         let firstname = column3List[i].innerText;
@@ -81,14 +82,12 @@ const changeColumnsIntoInputs = () => {
         column3List[i].firstElementChild.value = firstname;
         column4List[i].firstElementChild.value = perbest;
     }
-
-
 }
 
 const changeColumnIntoCalendar = () => {
 
     let column5List = document.getElementsByClassName('column5');
-    for (let i = 1; i < column5List.length; i++) {
+    for (let i = 1; i < column5List.length - 1; i++) {
         let date = column5List[i].innerText;
         column5List[i].innerHTML = calendar();
         column5List[i].firstElementChild.value = date;
@@ -107,7 +106,6 @@ const deleteRow = (element) => {
     let targetRow = element.parentNode.parentNode;
     console.log(row - 1);
     document.querySelector("tbody").removeChild(targetRow);
-
 }
 
 const saveEditedRow = (element) => {
@@ -135,7 +133,6 @@ const saveEditedRow = (element) => {
         targetRow.querySelector('.bi-check-lg').style.display = 'none';
         targetRow.querySelector('.bi-pencil').style.display = 'unset';
     }
-
 }
 
 const editRow = (element) => {
@@ -167,6 +164,7 @@ const editRow = (element) => {
 }
 
 const findWorstTime = () => {
+
     let timeColumns = document.querySelectorAll('.column4');
     let max = -1;
     for (let i = 1; i < timeColumns.length; i++) {
@@ -188,6 +186,7 @@ const findWorstTime = () => {
 }
 
 const findBestTime = () => {
+
     let timeColumns = document.querySelectorAll('.column4');
     let min = Number.MAX_SAFE_INTEGER;
     for (let i = 1; i < timeColumns.length; i++) {
@@ -206,13 +205,13 @@ const findBestTime = () => {
     } else {
         document.getElementById('bestTime').innerHTML = parseFloat(min).toFixed(2);
     }
-
 }
 
 const findAverageTime = () => {
+
     let timeColumns = document.querySelectorAll('.column4');
     let sum = 0;
-    for (let i = 1; i < timeColumns.length; i++) {
+    for (let i = 1; i < timeColumns.length -1; i++) {
         let time;
         if (timeColumns[i].childElementCount > 0) {
             time = parseFloat(timeColumns[i].firstElementChild.value);
@@ -224,13 +223,12 @@ const findAverageTime = () => {
     if (sum === 0) {
         document.getElementById('averageTime').innerHTML = "-";
     } else {
-        document.getElementById('averageTime').innerHTML = parseFloat(sum / (timeColumns.length - 1)).toFixed(2);
+        document.getElementById('averageTime').innerHTML = parseFloat(sum / (timeColumns.length - 2)).toFixed(2);
     }
-
-
 }
 
 const hideColumn = () => {
+
     let hideColumnCountry = document.getElementById("hideColumnCountry");
     let hideColumnSurname = document.getElementById("hideColumnSurname");
     let hideColumnFirstname = document.getElementById("hideColumnFirstname");
@@ -253,10 +251,7 @@ const hideColumn = () => {
     hide(hideColumnFirstname);
     hide(hideColumnPersBest);
     hide(hideColumnDate);
-
 }
-
-
 
 const unhideColumn = () => {
 
@@ -282,13 +277,51 @@ const unhideColumn = () => {
     unhide(hideColumnFirstname);
     unhide(hideColumnPersBest);
     unhide(hideColumnDate);
-
 }
 
 const changeMainTitleTrackRace = () => {
+
     let trackRaceOption = document.getElementById('trackRaceOptions').value;
     document.getElementById('trackRaceTitle').innerHTML = trackRaceOption;
 }
+
+const addFilters = () => {
+
+    let hideColumnCountry = document.getElementById("filterRow");
+    let addFiltersButton = document.getElementById("addFilters");
+
+    if (addFiltersButton.innerText === "Add Filters") {
+        hideColumnCountry.style.display = "flex";
+        addFiltersButton.innerText = "Remove Filters"
+    } else {
+        hideColumnCountry.style.display = "none";
+        addFiltersButton.innerText = "Add Filters"
+    }
+}
+
+const saveData = ()=>{
+    // Check browser support
+    if (typeof (Storage) !== 'undefined') {
+        // Store
+        let json, countries, surnames, firstnames, times, dates;
+
+        // let countries = document.getElementsByClassName('column1').getElementsByClassName('bi-check-lg');
+        
+        json = {
+            'countries':countries,
+            'surnames':surnames,
+            'firstnames':firstnames,
+            'times':times,
+            'dates':dates,
+        }
+
+        localStorage.setItem('json', JSON.stringify(json));
+    } else {
+        console.log('Sorry, your browser does not support Web Storage...');
+    }
+}
+
+
 //----------------------------------listeners-----------------------------------------------------//
 
 document.body.addEventListener('animationend', () => {
@@ -301,6 +334,21 @@ document.getElementById('myFloat').addEventListener('click', () => {
     unhideColumn();
 });
 
+document.getElementById('addFilters').addEventListener('click', () => {
+    addFilters();
+    let countryFilter = document.getElementById("countryFilter");
+    let surnameFilter = document.getElementById("surnameFilter");
+    let nameFilter = document.getElementById("nameFilter");
+    let personalBestFilter = document.getElementById("personalBestFilter");
+    let dateFilter = document.getElementById("dateFilter");
+
+    countryFilter.innerText = "";
+    surnameFilter.innerText = "";
+    nameFilter.innerText = "";
+    personalBestFilter.innerText = "";
+    dateFilter.innerText = "";
+});
+
 document.getElementById('saveSettings').addEventListener('click', () => {
     changeMainTitleTrackRace();
     hideColumn();
@@ -308,17 +356,7 @@ document.getElementById('saveSettings').addEventListener('click', () => {
 });
 
 document.getElementById('saveInStorage').addEventListener('click', () => {
-    /* // Check browser support
-     if (typeof (Storage) !== 'undefined') {
-         // Store
-         localStorage.setItem('countryFlag', countryFlag);
-         localStorage.setItem('surname', surname);
-         localStorage.setItem('firstname', firstname);
-         localStorage.setItem('perBest', perBest);
-         localStorage.setItem('date', date);
-     } else {
-         console.log('Sorry, your browser does not support Web Storage...');
-     } */
+    saveData();
 });
 
 document.querySelector('table').addEventListener('click', function (evt) {
@@ -346,7 +384,7 @@ document.querySelector('table').addEventListener('click', function (evt) {
 }, false);
 
 
-//----------------------------------listeners-----------------------------------------------------//
+//----------------------------------AD2HS-----------------------------------------------------//
 
 function addToHomeScreen() {
     let a2hsBtn = document.querySelector(".ad2hs-prompt");  // hide our user interface that shows our A2HS button

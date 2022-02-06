@@ -1,16 +1,17 @@
 const cacheName = 'UoM Track';
 
-const staticAssets = ['./', 
-                      './index.html', 
-                      './css/index.css',
-                      './scripts/uomTrack.js',
-                      './scripts/sort-table.js',
-                      './scripts/dynamicHtmlElements.js',
-                      './resources/icon_320.png',
-                      './resources/large.jpeg',
-                      './resources/medium.jpeg',
-                      './resources/small.jpeg',
-                    ];
+const staticAssets = ['./',
+  './index.html',
+  './css/index.css',
+  './scripts/uomTrack.js',
+  './scripts/sort-table.js',
+  './scripts/filters.js',
+  './scripts/dynamicHtmlElements.js',
+  './resources/icon_320.png',
+  './resources/large.jpeg',
+  './resources/medium.jpeg',
+  './resources/small.jpeg',
+];
 
 self.addEventListener('install', async event => {
   const cache = await caches.open(cacheName);
