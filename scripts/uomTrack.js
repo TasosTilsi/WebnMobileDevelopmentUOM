@@ -300,15 +300,14 @@ const saveData = () => {
     // Check browser support
     if (typeof (Storage) !== 'undefined') {
 
-        // Store
+        //----------------------------------------------------------------------------------//
+        // Store table data
         let json = [], columns;
 
         if (localStorage.getItem("json") != null) {
             localStorage.setItem('json', json);
             document.getElementById('loadFromStorage').disabled = false;
         }
-
-        // let countries = document.getElementsByClassName('column1').getElementsByClassName('bi-check-lg');
 
         let column1List = document.getElementsByClassName('column1');
         let column2List = document.getElementsByClassName('column2');
@@ -333,6 +332,12 @@ const saveData = () => {
         }
 
         localStorage.setItem('json', JSON.stringify(json));
+
+        //----------------------------------------------------------------------------------//
+        // Store trackRaceTitle
+        localStorage.setItem('trackRaceTitle', document.getElementById('trackRaceOptions').value);
+
+
     } else {
         console.log('Sorry, your browser does not support Web Storage...');
     }
@@ -341,15 +346,14 @@ const saveData = () => {
 const loadData = () => {
     // Check browser support
     if (typeof (Storage) !== 'undefined') {
+        //----------------------------------------------------------------------------------//
+        // Load table data
         document.getElementById("clearAllRows").click();
-        // Store
         let json, columns;
 
         json = JSON.parse(localStorage.getItem("json"));
 
         console.log(json);
-
-        // let countries = document.getElementsByClassName('column1').getElementsByClassName('bi-check-lg');
 
         let column1List, column2List, column3List, column4List, column5List;
 
@@ -370,6 +374,10 @@ const loadData = () => {
         }
 
         document.getElementById('myTable').click();
+        //----------------------------------------------------------------------------------//
+        // Store trackRaceTitle
+        document.getElementById('trackRaceTitle').innerText = localStorage.getItem('trackRaceTitle');
+
 
     } else {
         console.log('Sorry, your browser does not support Web Storage...');

@@ -60,7 +60,7 @@ body {
     width: 30%;
 }
 
-.insideModalBodyDivs>button {
+.insideModalBodyDivs>button ,a {
     width: 100%;
 }
 
